@@ -18,5 +18,10 @@ jobs:
           python-version: '3.11'
       - name: Instalar dependencias
         run: pip install -r requirements.txt
-      - name: Ejecutar Pruebas
-        run: python -m pytest ./tests/test_feature_extraction.py -v
+      - name: Mostrar archivos py encontrados
+        run: find . -name "*.py" | sort
+      - name: Ejecutar pruebas
+        run: |
+          TESTFILE=$(find . -name "test_*.py" | head -1)
+          echo "Archivo encontrado: $TESTFILE"
+          python -m pytest "$TESTFILE" -v
