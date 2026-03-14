@@ -19,4 +19,4 @@ jobs:
       - name: Instalar dependencias
         run: pip install -r requirements.txt
       - name: Ejecutar Pruebas
-        run: pytest tests/ -v --collect-only
+        run: pytest -v --collect-only
