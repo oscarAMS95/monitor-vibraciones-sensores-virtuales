@@ -20,6 +20,8 @@ jobs:
         run: pip install -r requirements.txt
       - name: Mostrar archivos py encontrados
         run: find . -name "*.py" | sort
+      - name: Mostrar contenido de tests
+        run: ls -la tests/
       - name: Ejecutar pruebas
         run: |
           TESTFILE=$(find . -name "test_*.py" | head -1)
