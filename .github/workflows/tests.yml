@@ -23,4 +23,4 @@ jobs:
       - name: Mostrar contenido de tests
         run: ls -la tests/
       - name: Ejecutar pruebas
-        run: pytest tests -v
+        run: pytest -v
