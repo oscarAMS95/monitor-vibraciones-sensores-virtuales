@@ -13,7 +13,7 @@ from feature_extraction import (
 
 class TestComputeRMS:
 
-    def test_señal_simetrica(self):
+    def test_signal_simetrica(self):
         """Oráculo 1: calculado a mano"""
         assert compute_rms([1.0, -1.0, 1.0, -1.0]) == pytest.approx(1.0, abs=1e-6)
 
@@ -26,11 +26,11 @@ class TestComputeRMS:
         esperado = np.sqrt(np.mean(signal_sana ** 2))
         assert compute_rms(signal_sana) == pytest.approx(esperado, rel=1e-6)
 
-    def test_señal_ceros(self):
+    def test_signal_ceros(self):
         """Caso límite: señal de ceros"""
         assert compute_rms([0.0, 0.0, 0.0]) == pytest.approx(0.0)
 
-    def test_señal_vacia(self):
+    def test_signal_vacia(self):
         """Entrada inválida: señal vacía"""
         with pytest.raises(ValueError):
             compute_rms([])
