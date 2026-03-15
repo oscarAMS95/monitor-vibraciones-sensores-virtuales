@@ -23,7 +23,4 @@ jobs:
       - name: Mostrar contenido de tests
         run: ls -la tests/
       - name: Ejecutar pruebas
-        run: |
-          TESTFILE=$(find . -name "test_*.py" | head -1)
-          echo "Archivo encontrado: $TESTFILE"
-          python -m pytest "$TESTFILE" -v
+        run: pytest tests -v
