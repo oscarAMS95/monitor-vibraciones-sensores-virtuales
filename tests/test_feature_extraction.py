@@ -62,43 +62,43 @@ class TestComputePeak:
         """Caso límite: un elemento"""
         assert compute_peak([-4.5]) == pytest.approx(4.5)
 
-    def test_señal_vacia(self):
+    def test_signal_vacia(self):
         with pytest.raises(ValueError):
             compute_peak([])
 
 
 class TestComputeKurtosis:
 
-    def test_señal_gaussiana(self):
+    def test_signal_gaussiana(self):
         """Oráculo 3: kurtosis gaussiana teórica = 3.0"""
         np.random.seed(42)
         signal = np.random.normal(0, 1, 10000)
         assert compute_kurtosis(signal) == pytest.approx(3.0, abs=0.1)
 
-    def test_señal_falla_mayor_que_sana(self, signal_sana, signal_con_falla):
+    def test_signal_falla_mayor_que_sana(self, signal_sana, signal_con_falla):
         """Señal con impacto debe tener kurtosis mayor"""
         assert compute_kurtosis(signal_con_falla) > compute_kurtosis(signal_sana)
 
-    def test_señal_constante(self, signal_constante):
+    def test_signal_constante(self, signal_constante):
         """Caso límite + inválida: std=0"""
         with pytest.raises(ValueError):
             compute_kurtosis(signal_constante)
 
-    def test_señal_vacia(self):
+    def test_signal_vacia(self):
         with pytest.raises(ValueError):
             compute_kurtosis([])
 
 
 class TestComputeVariance:
 
-    def test_señal_constante_varianza_cero(self, signal_constante):
+    def test_signal_constante_varianza_cero(self, signal_constante):
         """Señal constante no tiene dispersión"""
         assert compute_variance(signal_constante) == pytest.approx(0.0)
 
-    def test_señal_simetrica(self):
+    def test_signal_simetrica(self):
         """Oráculo 1: calculado a mano"""
         assert compute_variance([1.0, -1.0, 1.0, -1.0]) == pytest.approx(1.0, abs=1e-6)
 
-    def test_señal_vacia(self):
+    def test_signal_vacia(self):
         with pytest.raises(ValueError):
             compute_variance([])
